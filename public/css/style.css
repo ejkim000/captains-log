@@ -1,0 +1,51 @@
+* {
+    font-family: 'Caveat', cursive;
+    line-height: 1.8;
+    background-color: #f5ede5;
+}
+
+h1 {
+    font-size: 3rem;
+    padding: 1vh;
+    margin: 1vh;
+    text-align: center;
+}
+
+a {
+    color: #684117;
+}
+
+.logs {
+    font-size: 1.5rem;
+}
+.logs li {
+    margin-bottom: 15px;
+}
+.actions {
+    display: flex;
+    flex-direction: row;
+}
+.logs .actions input {
+    border: none;
+    font-size: 1.5rem;
+    margin: 5px 15px 0;
+    color: #684117;
+}
+.logs .actions a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin: 5px 15px 0;
+}
+.logs .actions input:hover, .logs .actions a:hover {
+    font-weight: 700;
+    border-bottom: 1px solid #684117;
+}
+
+.log {
+    border-bottom: 2px solid green;
+}
+
+.link {
+    font-size: 1.4rem;
+    text-align: right;
+}

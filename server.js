@@ -21,10 +21,11 @@ app.engine("jsx", require("express-react-views").createEngine());
 // MIDDLEWARE
 app.use(express.urlencoded({ extended: true })); // for the form submit
 app.use(methodOverride("_method")); // for other methods
+app.use(express.static(__dirname + '/public'));
 
 // ROOT
 app.get("/", (req, res) => {
-  res.send(`<a href="/logs">go to index page</a>`);
+  res.redirect("/logs");
 });
 
 //INDEX

@@ -1,25 +1,25 @@
-import React from 'react';
+import React from "react";
+const Default = require("./layout/Default");
 
 function Index({ logs }) {
-
   return (
-    <div>
-        <ul>
-            {logs.map(log => (
-                <li key={log.id}>
-                  <a href={`/logs/${log.id}`}>{log.title}</a> &nbsp; 
-                  <a href={`/logs/${log.id}/edit`}>Edit</a>
-                  <form method="post" action={`/logs/${log.id}?_method=DELETE`}>
-                  <input type="submit" value="Delete" />
-                  </form>
-                </li>
-            ))}
-            
-        </ul>
-
-        <a href="/logs/new">Crete a log</a>
-    </div>
-  )
+    <Default title="Captain's Log">
+      <ul className="logs">
+        {logs.map((log) => (
+          <li key={log.id}>
+            <a href={`/logs/${log.id}`}>{log.title}</a> <br />
+            <div className="actions">
+              <a href={`/logs/${log.id}/edit`}>Edit</a>
+              <form method="post" action={`/logs/${log.id}?_method=DELETE`}>
+                <input type="submit" value="Delete" />
+              </form>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <div className="link"><a href="/logs/new">Crete a log</a></div>
+    </Default>
+  );
 }
 
 module.exports = Index;
