@@ -1,16 +1,30 @@
-import React from 'react';
+import React from "react";
+import Default from "./layout/Default";
 
 function New() {
   return (
-    <div>
+    <Default title="Create a Log">
+      <div className="log-form">
         <form method="post" action="/logs">
-            Title: <input type="text" name="title" /><br />
-            Entry: <textarea type="text" name="entry"></textarea><br />
-            Ship Is Broken: <input type="checkbox" name="shipIsBroken" /><br />
-            <input type="submit" value="Submit" /><br />
+          <div>
+            <label>Title</label>
+            <input type="text" name="title" />
+          </div>
+          <div>
+            <label>Entry</label>
+            <textarea type="text" name="entry"></textarea>
+          </div>
+          <div>
+            <label>Ship Is Broken</label>
+            <input type="checkbox" name="shipIsBroken" />
+          </div>
+          <div>
+            <input type="submit" value="Submit" />
+          </div>
         </form>
-    </div>
-  )
+      </div>
+    </Default>
+  );
 }
 
 module.exports = New;
