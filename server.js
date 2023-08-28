@@ -54,6 +54,7 @@ app.post("/logs", async (req, res) => {
   res.redirect("/logs");
 });
 
+// SHOW
 app.get("/logs/:id", async (req, res) =>{
     const foundLog = await Logs.findById(req.params.id);
     res.render("Show", {
@@ -63,6 +64,13 @@ app.get("/logs/:id", async (req, res) =>{
     console.log(foundLog);
 })
 
+// EDIT
+app.get("/logs/:id/edit", async (req, res) => {
+    const foundLog = await Logs.findById(req.params.id);
+    res.render("Edit", {
+        log: foundLog
+    })
+})
 
 // DELETE
 app.delete("/logs/:id", async (req, res) => {

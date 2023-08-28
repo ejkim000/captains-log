@@ -7,7 +7,8 @@ function Index({ logs }) {
         <ul>
             {logs.map(log => (
                 <li key={log.id}>
-                  <a href={`/logs/${log.id}`}>{log.title}</a>
+                  <a href={`/logs/${log.id}`}>{log.title}</a> &nbsp; 
+                  <a href={`/logs/${log.id}/edit`}>Edit</a>
                   <form method="post" action={`/logs/${log.id}?_method=DELETE`}>
                   <input type="submit" value="Delete" />
                   </form>
