@@ -20,10 +20,19 @@ app.engine("jsx", require("express-react-views").createEngine());
 // MIDDLEWARE
 app.use(express.urlencoded({ extended: true })); // for the form submit
 
-// INDEX
+// ROOT
 app.get("/", (req, res) => {
-  res.send(`<h1>Captain's Log index page</h1>`);
+  res.send(`<a href="/logs">go to index page</a>`);
 });
+
+//INDEX
+app.get("/logs", async (req, res) =>{
+    const allLogs = await Logs.find({});
+    
+    res.render("Index", {
+        logs: allLogs
+    })
+})
 
 // NEW
 app.get("/logs/new", (req, res) => {
@@ -40,7 +49,7 @@ app.post("/logs", async (req, res) => {
   await Logs.create(req.body);
 
   console.log(req.body);
-  //res.redirect("/logs/show");
+  res.redirect("/logs");
 });
 
 // LISTEN SERVER
