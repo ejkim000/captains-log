@@ -5,7 +5,7 @@ function Index({ logs }) {
     <div>
         <ul>
             {logs.map(log => (
-                <li key={log.id}>{log.title}</li>
+                <li key={log.id}><a href={`/logs/${log.id}`}>{log.title}</a></li>
             ))}
             
         </ul>

@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 //INDEX
 app.get("/logs", async (req, res) =>{
     const allLogs = await Logs.find({});
-    
+
     res.render("Index", {
         logs: allLogs
     })
@@ -51,6 +51,16 @@ app.post("/logs", async (req, res) => {
   console.log(req.body);
   res.redirect("/logs");
 });
+
+app.get("/logs/:id", async (req, res) =>{
+    const foundLog = await Logs.findById(req.params.id);
+    res.render("Show", {
+        log: foundLog,
+    })
+
+    console.log(foundLog);
+})
+
 
 // LISTEN SERVER
 app.listen(PORT, () => {
