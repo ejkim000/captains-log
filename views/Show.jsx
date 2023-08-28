@@ -12,7 +12,10 @@ function Show({ log }) {
           <span>Ship Is Not Broken</span>
         )}
       </p>
-      <p>Date: {new Date(log.createdAt).toString()}</p>
+      <p>Created At: {new Date(log.createdAt).toString()}</p>
+      {log.updatedAt > log.createdAt && (
+        <p>Updated At: {new Date(log.updatedAt).toString()}</p>
+      )}
       <p>
         <a href="/logs">Go Back to Logs</a>
       </p>
