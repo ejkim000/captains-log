@@ -3,6 +3,15 @@ const express = require("express");
 const app = express();
 const PORT = 3030;
 
+// DB CONNECTION
+const mongoose = require("mongoose");
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const Logs = require("./models/logs");
+
 // VIEW ENGINE
 app.set("views", __dirname + "/views");
 app.set("view engine", "jsx");
@@ -22,11 +31,17 @@ app.get("/logs/new", (req, res) => {
 });
 
 // CREATE
-app.post("/logs", (req, res) => {
-  res.send("received");
-  console.log(req.body);
-});
+app.post("/logs", async (req, res) => {
 
+  req.body.shipIsBroken === "on"
+    ? (req.body.shipIsBroken = true)
+    : (req.body.shipIsBroken = false);
+
+  await Logs.create(req.body);
+
+  console.log(req.body);
+  //res.redirect("/logs/show");
+});
 
 // LISTEN SERVER
 app.listen(PORT, () => {
