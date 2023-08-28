@@ -2,6 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const PORT = 3030;
+const Logs = require("./models/logs");
+const methodOverride = require("method-override");
 
 // DB CONNECTION
 const mongoose = require("mongoose");
@@ -10,7 +12,6 @@ mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true,
 });
 
-const Logs = require("./models/logs");
 
 // VIEW ENGINE
 app.set("views", __dirname + "/views");
@@ -19,6 +20,7 @@ app.engine("jsx", require("express-react-views").createEngine());
 
 // MIDDLEWARE
 app.use(express.urlencoded({ extended: true })); // for the form submit
+app.use(methodOverride("_method")); // for other methods
 
 // ROOT
 app.get("/", (req, res) => {
@@ -61,6 +63,12 @@ app.get("/logs/:id", async (req, res) =>{
     console.log(foundLog);
 })
 
+
+// DELETE
+app.delete("/logs/:id", async (req, res) => {
+    await Logs.findByIdAndRemove(req.params.id);
+    res.redirect("/logs");
+})
 
 // LISTEN SERVER
 app.listen(PORT, () => {
