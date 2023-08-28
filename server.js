@@ -72,6 +72,12 @@ app.get("/logs/:id/edit", async (req, res) => {
     })
 })
 
+// UPDATE
+app.put("/logs/:id", async (req, res) => {
+    await Logs.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect("/logs");
+})
+
 // DELETE
 app.delete("/logs/:id", async (req, res) => {
     await Logs.findByIdAndRemove(req.params.id);
